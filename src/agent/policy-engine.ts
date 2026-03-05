@@ -16,7 +16,12 @@ export async function checkWithdrawal(
   vaultPda: string,
   amount: number
 ): Promise<PolicyCheckResult> {
-  const vault = await fetchVault(new PublicKey(vaultPda));
+  let vault;
+  try {
+    vault = await fetchVault(new PublicKey(vaultPda));
+  } catch (err: any) {
+    return { allowed: false, reason: `Failed to fetch vault: ${err.message}` };
+  }
 
   if (!vault) {
     return { allowed: false, reason: "Vault not found" };

@@ -40,12 +40,16 @@ function loadStore(): Map<string, StoredWallet> {
 }
 
 function saveStore(store: Map<string, StoredWallet>): void {
-  ensureStoreDir();
-  const obj: Record<string, StoredWallet> = {};
-  for (const [k, v] of store) {
-    obj[k] = v;
+  try {
+    ensureStoreDir();
+    const obj: Record<string, StoredWallet> = {};
+    for (const [k, v] of store) {
+      obj[k] = v;
+    }
+    fs.writeFileSync(STORE_FILE, JSON.stringify(obj, null, 2));
+  } catch (err: any) {
+    console.error(`Failed to save wallet store: ${err.message}`);
   }
-  fs.writeFileSync(STORE_FILE, JSON.stringify(obj, null, 2));
 }
 
 function storedToWallet(stored: StoredWallet): AgentWallet {
@@ -151,6 +155,16 @@ export function importWallet(secretKey: Uint8Array, label?: string): AgentWallet
 export function getAuthorityKeypair(): Keypair {
   const home = process.env.HOME || process.env.USERPROFILE || "";
   const configPath = `${home}/.config/solana/id.json`;
-  const secretKey = JSON.parse(fs.readFileSync(configPath, "utf-8"));
-  return Keypair.fromSecretKey(new Uint8Array(secretKey));
+  if (!fs.existsSync(configPath)) {
+    console.error(`Authority keypair not found at ${configPath}`);
+    console.error("Run: solana-keygen new");
+    process.exit(1);
+  }
+  try {
+    const secretKey = JSON.parse(fs.readFileSync(configPath, "utf-8"));
+    return Keypair.fromSecretKey(new Uint8Array(secretKey));
+  } catch (err: any) {
+    console.error(`Failed to load authority keypair: ${err.message}`);
+    process.exit(1);
+  }
 }
