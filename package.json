@@ -1,0 +1,40 @@
+{
+  "name": "seedless-agent-wallet",
+  "version": "0.1.0",
+  "description": "Autonomous AI agent wallet on Solana with on-chain policy enforcement",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "seedless-agent": "./dist/cli/index.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.src.json",
+    "cli": "tsx src/cli/index.ts",
+    "lint:fix": "prettier */*.js \"*/**/*{.js,.ts}\" -w",
+    "lint": "prettier */*.js \"*/**/*{.js,.ts}\" --check"
+  },
+  "dependencies": {
+    "@ai-sdk/anthropic": "^3.0.54",
+    "@coral-xyz/anchor": "^0.32.1",
+    "@solana/web3.js": "^1.98.4",
+    "ai": "^6.0.111",
+    "bn.js": "^5.2.3",
+    "chalk": "^5.6.2",
+    "commander": "^14.0.3",
+    "dotenv": "^17.3.1",
+    "ora": "^9.3.0",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "@types/bn.js": "^5.1.0",
+    "@types/chai": "^4.3.0",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^25.3.3",
+    "chai": "^4.3.4",
+    "mocha": "^9.0.3",
+    "prettier": "^2.6.2",
+    "ts-mocha": "^10.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.7.3"
+  }
+}
