@@ -4,25 +4,25 @@
 
 ```
 +-----------------------------------------------------+
-|                    CLI (Commander.js)              |
-|  create-wallet | fund | create-vault | run-agent  |
-|  multi-agent | observe | emergency-stop | set-policy |
+|                    CLI (Commander.js)               |
+|  create-wallet | fund | create-vault |  run-agent   |
+| multi-agent | observe | emergency-stop | set-policy |
 +---------------------------------+------------------+
                                  |
              +-------------------+-----------+
              |                               |
     +------+------+            +-------+-------+
-    | Agent Runtime|            | Vault SDK     |
-    | (AI + Tools) |            | (Anchor Client)|
-    | Claude LLM   |            |               |
+    | Agent Runtime|           | Vault SDK     |
+    | (AI + Tools) |           |(Anchor Client)|
+    | Claude LLM   |           |               |
     +------+------+            +-------+-------+
            |                           |
     +------+------+            +-------+-------+
-    | Policy Engine|            | Solana Devnet |
-    | (Pre-flight) |            |               |
+    | Policy Engine|           | Solana Devnet |
+    | (Pre-flight) |           |               |
     +------+------+            | +----------+  |
            |                   | |agent_vault  |
-           +-------------------> | Program    |
+           +-------------------> |Program     |
                                | +----------+  |
                                +----------------+
 ```
@@ -57,7 +57,7 @@ TypeScript client wrapping the Anchor program. Provides typed functions for all 
 
 ### 3. Agent Runtime (`src/agent/`)
 
-- **wallet-manager.ts** - In-memory keypair management (generate, store, retrieve)
+- **wallet-manager.ts** - File-based keypair management with persistence across CLI invocations
 - **policy-engine.ts** - Client-side pre-flight policy checks (saves gas)
 - **custom-tools.ts** - AI tool definitions for the LLM (Vercel AI SDK `tool()`)
 - **index.ts** - Agent loop using `generateText()` with Claude

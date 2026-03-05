@@ -14,7 +14,7 @@ tools:
   - check_policy_limits
   - transfer_sol
   - get_wallet_info
-llm: claude-sonnet-4-20250514
+llm: claude-opus-4-6
 chain: solana-devnet
 ---
 

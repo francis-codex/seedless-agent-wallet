@@ -27,7 +27,7 @@ Most agent wallet implementations enforce spending limits in JavaScript config. 
 ### Setup
 
 ```bash
-git clone https://github.com/your-repo/seedless-agent-wallet.git
+git clone https://github.com/francis-codex/seedless-agent-wallet.git
 cd seedless-agent-wallet
 
 # Install dependencies
@@ -52,13 +52,16 @@ bash scripts/demo.sh
 # 1. Create an agent wallet
 npx tsx src/cli/index.ts create-wallet --label my-agent
 
-# 2. Create a vault with policy limits (deposits 0.5 SOL)
+# 2. Fund the agent wallet for transaction fees
+npx tsx src/cli/index.ts fund-wallet <agent-id> --amount 0.05
+
+# 3. Create a vault with policy limits (deposits 0.5 SOL)
 npx tsx src/cli/index.ts create-vault <agent-id>
 
-# 3. Run the autonomous agent
+# 4. Run the autonomous agent
 npx tsx src/cli/index.ts run-agent <agent-id>
 
-# 4. Observe agent actions
+# 5. Observe agent actions
 npx tsx src/cli/index.ts observe
 ```
 
@@ -109,7 +112,7 @@ Program ID: `697JZH3975kVFxUCdtMqPejbagTN4VihtGde5b9k8VdN`
 ## Tech Stack
 
 - **On-chain**: Anchor 0.31.1 (Rust)
-- **AI**: Anthropic Claude (claude-sonnet-4-20250514) via Vercel AI SDK
+- **AI**: Anthropic Claude (claude-opus-4-6) via Vercel AI SDK
 - **Runtime**: TypeScript, @solana/web3.js, @coral-xyz/anchor
 - **CLI**: Commander.js, chalk, ora
 - **Network**: Solana Devnet (Helius RPC)
