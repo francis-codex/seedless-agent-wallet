@@ -2,7 +2,7 @@
 import { Command } from "commander";
 import dotenv from "dotenv";
 
-dotenv.config();
+dotenv.config({ quiet: true });
 
 const program = new Command();
 
