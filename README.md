@@ -15,6 +15,10 @@ Most agent wallet implementations enforce spending limits in JavaScript config. 
 - **Real-time observation** - structured action logging with `observe` command
 - **Emergency stop** - authority can instantly freeze any vault
 
+## Demo
+
+[Watch the deep dive and live demo](https://www.loom.com/share/39f37e06232145589f6e5b4f25f31d9f)
+
 ## Quick Start
 
 ### Prerequisites
