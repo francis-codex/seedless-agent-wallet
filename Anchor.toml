@@ -15,7 +15,7 @@ agent_vault = "697JZH3975kVFxUCdtMqPejbagTN4VihtGde5b9k8VdN"
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "https://devnet.helius-rpc.com/?api-key=4bdebac7-7691-4af0-bbe3-bc95b8e6b18f"
+cluster = "devnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]
